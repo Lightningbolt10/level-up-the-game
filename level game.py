@@ -33,16 +33,17 @@ screen = pygame. display.set_mode((sw,sh))
 pygame. display.set_caption("Boundry sprite")
 bg_color = pygame.Color("blue")
 screen.fill(bg_color)
-won = True
+won = False
+running = True
 clock = pygame.time.Clock()
-while True:
+while running:
     for event in pygame.event.get():
        if event.type == pygame.QUIT:
-         pygame.quit()
+         running = False
     if not won:
        keys = pygame.key.get_pressed()
-       xc = (keys[pygame.key.K_RIGHT]- keys[pygame.K_LEFT]) * 5
-       yc = (keys[pygame.key.K_DOWN]- keys[pygame.K_UP]) * 5
+       xc = (keys[pygame.K_RIGHT]- keys[pygame.K_LEFT]) * 5
+       yc = (keys[pygame.K_DOWN]- keys[pygame.K_UP]) * 5
        sp1.move(xc,yc)
 
        if sp1.rect.colliderect(sp2.rect):
@@ -50,7 +51,7 @@ while True:
           won = True
 
     if won:
-       win_text = font.render("You Win!",True, pygame.Color('black'))
+       win_text = font.render("You Win!",True, pygame.Color("Black"))
        screen.blit(win_text, ((sw - win_text.get_width()) //2,(sh - win_text.get_height()) //2))
 
          
