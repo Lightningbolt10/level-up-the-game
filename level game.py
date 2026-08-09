@@ -45,10 +45,12 @@ while running:
        xc = (keys[pygame.K_RIGHT]- keys[pygame.K_LEFT]) * 5
        yc = (keys[pygame.K_DOWN]- keys[pygame.K_UP]) * 5
        sp1.move(xc,yc)
-
+       
        if sp1.rect.colliderect(sp2.rect):
           all_sprites_list.remove(sp2)
           won = True
+
+    screen.fill(bg_color)
 
     if won:
        win_text = font.render("You Win!",True, pygame.Color("Black"))
@@ -57,7 +59,7 @@ while running:
          
 
     all_sprites_list.update()
-    screen.fill(bg_color)
+    
     all_sprites_list.draw(screen)
     pygame.display.flip()
     clock.tick(240)
